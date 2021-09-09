@@ -1,6 +1,9 @@
 import random
 import pygame
 import sys
+#import mysql.connector
+#mydb = mysql.connector.connect(host="localhost", user="root", passwd="password123")
+
 
 from pygame.locals import *
 
