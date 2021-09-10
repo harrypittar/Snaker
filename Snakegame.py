@@ -1,8 +1,7 @@
 import random
 import pygame
 import sys
-#import mysql.connector
-#mydb = mysql.connector.connect(host="localhost", user="root", passwd="password123")
+import mysql.connector
 
 
 from pygame.locals import *
@@ -44,6 +43,7 @@ HEAD = 0  # Syntactic sugar: index of the snake's head
 
 
 def main():
+
     global SnakespeedCLOCK, DISPLAYSURF, BASICFONT
 
     pygame.init()
@@ -123,6 +123,10 @@ def runGame():
         pygame.display.update()
         SnakespeedCLOCK.tick(Snakespeed)
 
+        #mydb = mysql.connector.connect(host="localhost", user="root", passwd="password", database="highscores")
+
+       # mycursor = mydb.cursor()
+       # mycursor.execute("INSERT INTO Highscores(Highscore) VALUES ()")
 
 def drawPressKeyMsg():
     pressKeySurf = BASICFONT.render('Press any key to play!', True, Green)
@@ -131,12 +135,7 @@ def drawPressKeyMsg():
     DISPLAYSURF.blit(pressKeySurf, pressKeyRect)
 
 
-#def drawUsername():
-    #getplayer = input("What is your username?: ")
-   # player_name = BASICFONT.render("Player: " + getplayer, True, Green)
-    #player_nameRect = player_name.get_rect()
-    #player_nameRect.topleft = (Window_Width - 770, Window_Height - 30)
-    #DISPLAYSURF.blit(player_name, player_nameRect)
+
 
 
 def checkForKeyPress():
@@ -165,7 +164,7 @@ def showStartScreen():
         rotatedRect1.center = (Window_Width / 2, Window_Height / 2)
         DISPLAYSURF.blit(rotatedSurf1, rotatedRect1)
 
-        #drawUsername()
+
         drawPressKeyMsg()
 
         if checkForKeyPress():
@@ -240,7 +239,7 @@ def drawWorm(wormCoords):
 def drawApple(coord):
     x = coord['x'] * Cell_Size
     y = coord['y'] * Cell_Size
-    # apple = pygame.image.load(r'/Users/harrypittar/Documents/funcodez/food.jpeg')
+
 
     appleRect = pygame.Rect(x, y, Cell_Size, Cell_Size)
     pygame.draw.rect(DISPLAYSURF, Red, appleRect)
