@@ -1,7 +1,7 @@
 import random
 import pygame
 import sys
-import mysql.connector
+# import mysql.connector
 
 
 from pygame.locals import *
