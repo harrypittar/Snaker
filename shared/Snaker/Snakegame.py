@@ -218,10 +218,10 @@ def drawhighScore(score):
             hisc.seek(0)  # We already read to the end. We need to go back to the start
             hisc.write(str(score))
             hisc.truncate()  # Delete anything left over... not strictly necessary
-            mydb = mysql.connector.connect(host="localhost", user="root", passwd="password", database="highscores")
+            mydb = mysql.connector.connect(host="192.168.2.12", user="webuser", passwd="insecure_db_pw", database="snaker")
             mycursor = mydb.cursor()
             mycursor.execute("INSERT INTO highscores (username, score) VALUES (%s, %s)", (username, score))
-           
+
             mydb.commit()
 
     highscoreSurf = BASICFONT.render('Highscore: %s' % hi, True, White)
@@ -258,7 +258,7 @@ def drawGrid():
 
 if __name__ == '__main__':
     try:
-        username = input("Input username: ")
+        username = raw_input("Input username: ")
         main()
     except SystemExit:
         pass
