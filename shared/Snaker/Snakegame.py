@@ -1,7 +1,7 @@
 import random
 import pygame
 import sys
-# import mysql.connector
+import mysql.connector
 
 
 from pygame.locals import *
@@ -44,7 +44,7 @@ HEAD = 0  # Syntactic sugar: index of the snake's head
 
 def main():
 
-    global SnakespeedCLOCK, DISPLAYSURF, BASICFONT
+    global SnakespeedCLOCK, DISPLAYSURF, BASICFONT, username
 
     pygame.init()
     SnakespeedCLOCK = pygame.time.Clock()
@@ -59,6 +59,7 @@ def main():
 
 
 def runGame():
+
     # Start Point
     startx = 20
     starty = 10
@@ -123,10 +124,8 @@ def runGame():
         pygame.display.update()
         SnakespeedCLOCK.tick(Snakespeed)
 
-        #mydb = mysql.connector.connect(host="localhost", user="root", passwd="password", database="highscores")
 
-       # mycursor = mydb.cursor()
-       # mycursor.execute("INSERT INTO Highscores(Highscore) VALUES ()")
+
 
 def drawPressKeyMsg():
     pressKeySurf = BASICFONT.render('Press any key to play!', True, Green)
@@ -219,6 +218,11 @@ def drawhighScore(score):
             hisc.seek(0)  # We already read to the end. We need to go back to the start
             hisc.write(str(score))
             hisc.truncate()  # Delete anything left over... not strictly necessary
+            mydb = mysql.connector.connect(host="localhost", user="root", passwd="password", database="highscores")
+            mycursor = mydb.cursor()
+            mycursor.execute("INSERT INTO highscores (username, score) VALUES (%s, %s)", (username, score))
+           
+            mydb.commit()
 
     highscoreSurf = BASICFONT.render('Highscore: %s' % hi, True, White)
     highscoreRect = highscoreSurf.get_rect()
@@ -254,6 +258,7 @@ def drawGrid():
 
 if __name__ == '__main__':
     try:
+        username = input("Input username: ")
         main()
     except SystemExit:
         pass
