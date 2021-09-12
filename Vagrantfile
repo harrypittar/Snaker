@@ -34,4 +34,16 @@ Vagrant.configure("2") do |config|
     SHELL
   end
 
+  config.vm.define "webserver" do |ws|
+    ws.vm.box = "ubuntu/xenial64"
+    ws.vm.hostname = "webserver"
+    ws.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+    ws.vm.network "private_network", ip: "192.168.2.13"
+    ws.vm.synced_folder "shared", "/vagrant", owner: "vagrant", group: "vagrant", mount_options: ["dmode=775,fmode=777"]
+
+    ws.vm.provision "shell", inline: <<-SHELL
+      sh /vagrant/build-webserver-vm.sh
+    SHELL
+  end
+
 end
