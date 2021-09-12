@@ -34,7 +34,7 @@ $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
 
 $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
 
-$q = $pdo->query("SELECT * FROM highscores");
+$q = $pdo->query("SELECT * FROM highscores ORDER BY score DESC");
 
 while($row = $q->fetch()){
   echo "<tr><td>".$row["username"]."</td><td>".$row["score"]."</td></tr>\n";
