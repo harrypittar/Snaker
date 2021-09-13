@@ -1,4 +1,7 @@
+# Update ubuntu software packages
 apt-get update
+
+# Install required packages for webserver
 apt-get install -y apache2 php libapache2-mod-php php-mysql
 
 # Change VM's webserver's configuration to use shared folder.
