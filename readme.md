@@ -88,6 +88,6 @@ Configure the database by editing the `shared/build_dbserver_vm.sh` file, and ru
 If you do change the user password, you must also edit the password on `line 221` of the game's python source code, and `line 31` of `shared/www/index.php` (the PHP file which displays high scores on a website).
 
 ## Webserver
-Provisioning for the *webserver* VM can be configured by editing `shared/build_dbserver_vm.sh`. This script also activates the configuration stored in `shared/website.conf`, which you may edit.
+Provisioning for the *webserver* VM can be configured by editing `shared/build_webserver_vm.sh`. This script also activates the configuration stored in `shared/website.conf`, which you may edit.
 
 The PHP file that displays the highscores on a web page can be found at `shared/www/index.php`. In this file, you can configure the appearance and functionality of the website. Additionally, any changes made to the database must be reflected in the PHP script section of the file.
