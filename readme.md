@@ -8,7 +8,7 @@ Install the required programs:
 * [Vagrant](https://www.vagrantup.com/downloads)
 
 ## Setup
-### Step 1 
+### Step 1
 From your command line, clone Snaker:
 ```
 git clone https://github.com/rammcodes/dopefolio
@@ -38,7 +38,7 @@ vagrant
 The VM may take a few minutes to load. You may run into some error messages when logging in, but you can ignore them.
 
 To play the game:
-1. Open the terminal by right-clicking on the desktop and selecting "Open Terminal Here"
+1. Open the terminal by right-clicking on the desktop in the VirtualBox window and selecting "Open Terminal Here"
 2. Go in to the Snaker game directory:
     ```
     cd /vagrant/Snaker
@@ -47,7 +47,7 @@ To play the game:
     ```
     python Snakegame.py
     ```
-4. Type in your username, and play the game using the arrow keys. High scores will be stored in the MySQL database in the *dbserver*
+4. Type in your username, and play the game using the arrow keys. High scores will be stored in the MySQL database in the *dbserver* VM
 
 You can then view the highscores by visiting http://127.0.0.1:8080 in your web browser. This website is stored on the *webserver* VM.
 
@@ -61,7 +61,7 @@ Vagrant provides an easy way to configure and manage multiple VMs. To edit confi
 * A shared folder between the VM and host machine
 * VM provisioning, which runs Unix shell commands on the VM after it has been created
     * Shell scripts for provision each VM can be found in the `shared` folder
-* and much more (see Vagrant documentation)... 
+* and much more (see Vagrant documentation)...
 
 Configuration for a VM may look like this:
 ```
@@ -83,11 +83,11 @@ Configuration for a VM may look like this:
 You can edit the game's source code by editing the `shared/Snaker/Snakegame.py` file. As the source code is in the /shared folder, changes made to the source code will show up immediately in the VM. This is true for all files in the `shared` folder.
 
 ## MySQL Database
-Configure the database by editing the `shared/build_dbserver_vm.sh` file, and run initial MySQL queries with the `shared/setup-database.sql` file. We suggest changing the root password on `line 5` of `shared/build_dbserver_vm.sh`, and your user password on `lines 25 and 33`. 
+Configure the database by editing the `shared/build_dbserver_vm.sh` file, and run initial MySQL queries with the `shared/setup-database.sql` file. We suggest changing the root password on `line 5` of `shared/build_dbserver_vm.sh`, and your user password on `lines 25 and 33`.
 
 If you do change the user password, you must also edit the password on `line 221` of the game's python source code, and `line 31` of `shared/www/index.php` (the PHP file which displays high scores on a website).
 
 ## Webserver
-Provisioning for the *webserver* VM can be configured by editing `shared/build_dbserver_vm.sh`. This script also activates the configuration stored in `shared/website.conf`, which you may edit. 
+Provisioning for the *webserver* VM can be configured by editing `shared/build_dbserver_vm.sh`. This script also activates the configuration stored in `shared/website.conf`, which you may edit.
 
 The PHP file that displays the highscores on a web page can be found at `shared/www/index.php`. In this file, you can configure the appearance and functionality of the website. Additionally, any changes made to the database must be reflected in the PHP script section of the file.
