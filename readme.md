@@ -11,7 +11,7 @@ Install the required programs:
 ### Step 1
 From your command line, clone Snaker:
 ```
-git clone https://github.com/rammcodes/dopefolio
+git clone https://github.com/harrypittar/Snaker
 ```
 Go into the repository:
 ```
